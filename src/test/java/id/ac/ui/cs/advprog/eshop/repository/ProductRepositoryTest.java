@@ -66,4 +66,78 @@ class ProductRepositoryTest {
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertFalse(productIterator.hasNext());
     }
+
+
+    @Test
+    void testEditProduct() {
+        Product product = new Product();
+        product.setProductId(UUID.randomUUID());
+        product.setProductName("Sampo1");
+        product.setProductQuantity(10);
+        productRepository.create(product);
+
+        //Objek baru dengan ID sama tapi data beda
+        Product updatedProduct = new Product();
+        updatedProduct.setProductId(product.getProductId());
+        updatedProduct.setProductName("Sampo2");
+        updatedProduct.setProductQuantity(20);
+
+        Product result = productRepository.edit(updatedProduct);
+
+        //compare
+        assertNotNull(result);
+        assertEquals("Sampo2", result.getProductName());
+        assertEquals(20, result.getProductQuantity());
+
+        Product checkInRepo = productRepository.findbyId(product.getProductId());
+        assertEquals("Sampo2", checkInRepo.getProductName());
+    }
+
+    @Test
+    void testEditProductNotFound() {
+        Product nonExistentProduct = new Product();
+        nonExistentProduct.setProductId(UUID.randomUUID()); // ID random
+        nonExistentProduct.setProductName("Produk");
+        nonExistentProduct.setProductQuantity(0);
+
+        Product result = productRepository.edit(nonExistentProduct);
+
+        //Cek apakah result berisi product
+        assertNull(result);
+    }
+
+    @Test
+    void testDeleteProduct() {
+        Product product = new Product();
+        product.setProductId(UUID.randomUUID());
+        product.setProductName("Sampo");
+        product.setProductQuantity(5);
+        productRepository.create(product);
+
+        // cek Produk Ada
+        assertNotNull(productRepository.findbyId(product.getProductId()));
+
+        productRepository.delete(product.getProductId());
+
+        // cek apakah kosong
+        Product result = productRepository.findbyId(product.getProductId());
+        assertNull(result);
+
+        Iterator<Product> iterator = productRepository.findAll();
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    void testDeleteProductNotFound() {
+        Product product = new Product();
+        product.setProductId(UUID.randomUUID());
+        productRepository.create(product);
+
+        UUID randomId = UUID.randomUUID();
+        productRepository.delete(randomId);
+
+        // cek apakah produk masih ada jika id tidak ditemukan untuk didelete
+        Iterator<Product> iterator = productRepository.findAll();
+        assertTrue(iterator.hasNext());
+    }
 }
