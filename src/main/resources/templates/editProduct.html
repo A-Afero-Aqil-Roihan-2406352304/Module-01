@@ -14,7 +14,11 @@
         <input type="text" th:field="*{productName}" class="form-control" />
 
         <label>Quantity</label>
-        <input type="number" th:field="*{productQuantity}" class="form-control" />
+        <input type="number" th:field="*{productQuantity}" class="form-control"
+               th:classappend="${#fields.hasErrors('productQuantity')} ? 'is-invalid' : ''" />
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('productQuantity')}" th:errors="*{productQuantity}">
+            Error message placeholder
+        </div>
 
         <br>
         <button type="submit">Save Changes</button>
