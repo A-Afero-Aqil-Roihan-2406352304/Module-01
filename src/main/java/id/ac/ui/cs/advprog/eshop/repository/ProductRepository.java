@@ -28,8 +28,15 @@ public class ProductRepository {
         return null;
     }
 
-    public Product edit(Product product){
-        return product;
+    public Product edit(Product productBaru){
+        for (int i=0; i<productData.size();i++){
+            Product productLama = productData.get(i);
+            if (productBaru.getProductId().equals(productLama.getProductId())){
+                productData.set(i,productBaru);
+                return productBaru;
+            }
+        }
+        return null;
     }
 
     public void delete(UUID id){
