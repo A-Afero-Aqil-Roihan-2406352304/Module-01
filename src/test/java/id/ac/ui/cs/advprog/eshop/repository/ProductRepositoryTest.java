@@ -36,6 +36,14 @@ class ProductRepositoryTest {
         assertEquals(product.getProductId(), savedProduct.getProductId());
         assertEquals(product.getProductName(), savedProduct.getProductName());
         assertEquals(product.getProductQuantity(), savedProduct.getProductQuantity());
+
+        //set null product
+        Product producttanpaId= new Product();
+        producttanpaId.setProductId(null);
+        Product productBaru = productRepository.create(producttanpaId);
+        assertNotNull(productBaru);
+        Product hasil=productRepository.findbyId(UUID.fromString("eb558e9f-1c39-460e-8860-71af6af63bd0"));//jika tidak ketemu, return null
+        assertNull(hasil);
     }
 
     @Test
