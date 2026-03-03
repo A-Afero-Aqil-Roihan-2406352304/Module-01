@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Getter @Setter
 public class Car {
-    private UUID carId;
+    private UUID carId = UUID.randomUUID();;
     private String carName;
     private String carColor;
     private int carQuantity;
