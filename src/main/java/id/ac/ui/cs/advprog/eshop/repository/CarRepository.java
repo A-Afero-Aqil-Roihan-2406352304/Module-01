@@ -17,7 +17,7 @@ public class CarRepository {
     public Car create(Car car) {
         if (car.getCarId() == null) {
             UUID uuid = UUID.randomUUID();
-            car.setCarId(uuid.toString());
+            car.setCarId(uuid);
         }
         carData.add(car);
         return car;
@@ -27,7 +27,7 @@ public class CarRepository {
         return carData.iterator();
     }
 
-    public Car findById(String id) {
+    public Car findById(UUID id) {
         for (Car car : carData) {
             if (car.getCarId().equals(id)) {
                 return car;
@@ -36,7 +36,7 @@ public class CarRepository {
         return null;
     }
 
-    public Car update(String id, Car updatedCar) {
+    public Car update(UUID id, Car updatedCar) {
         for (int i = 0; i < carData.size(); i++) {
             Car car = carData.get(i);
             if (car.getCarId().equals(id)) {
@@ -50,7 +50,7 @@ public class CarRepository {
         return null; // Handle the case where the car is not found
     }
 
-    public void delete(String id) {
+    public void delete(UUID id) {
         carData.removeIf(car -> car.getCarId().equals(id));
     }
 }

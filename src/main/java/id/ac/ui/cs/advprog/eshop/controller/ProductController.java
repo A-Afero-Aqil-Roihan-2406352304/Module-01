@@ -92,7 +92,7 @@ class CarController extends ProductController {
 
     // new *
     @GetMapping("/editCar/{carId}")
-    public String editCarPage(@PathVariable String carId, Model model) {
+    public String editCarPage(@PathVariable UUID carId, Model model) {
         Car car = carservice.findById(carId);
         model.addAttribute("car", car);
         return "editCar";
@@ -109,7 +109,7 @@ class CarController extends ProductController {
 
     // new *
     @PostMapping("/deleteCar")
-    public String deleteCar(@RequestParam("carId") String carId) {
+    public String deleteCar(@RequestParam("carId") UUID carId) {
         carservice.deleteCarById(carId);
         return "redirect:listCar";
     }

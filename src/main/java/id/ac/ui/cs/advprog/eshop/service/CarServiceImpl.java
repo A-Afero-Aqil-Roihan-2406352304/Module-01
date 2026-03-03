@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -30,19 +31,19 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car findById(String carId) {
+    public Car findById(UUID carId) {
         Car car = carRepository.findById(carId);
         return car;
     }
 
     @Override
-    public void update(String carId, Car car) {
+    public void update(UUID carId, Car car) {
         // TODO Auto-generated method stub
         carRepository.update(carId, car);
     }
 
     @Override
-    public void deleteCarById(String carId) {
+    public void deleteCarById(UUID carId) {
         // TODO Auto-generated method stub
         carRepository.delete(carId);
     }

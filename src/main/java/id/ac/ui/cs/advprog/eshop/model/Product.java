@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Getter @Setter
 public class Product {
-    private String productId;
+    private UUID productId;
 
     @NotNull(message = "Name cannot be empty")
     private String productName;
