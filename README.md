@@ -30,3 +30,4 @@ Saya memperbaiki masalah pelaporan code coverage yang sebelumnya tidak terdeteks
 Workflow saya sudah mengimplementasikan Continous Integration. Hal ini dikarenakan setiap push/pull, workflow akan secara otomatis melakukan tests berupa test jacoco dan sonarcloud. 
 Namun workflow saya masih belum bisa mengimplementasikan Continous Deployment. Hal ini dikarenakan saya belum dapat mendeploy projek saya ke Koyeb, Render, ataupun layanan lain yang serupa.
 Saya baru membuat dockerfile dan isinya untuk packaging (progress CD). Kedepannya saya akan menambahkan pekerjaan yang langsung deploy proyek saya ke Koyeb ketika terdapat push di main branch.
+
