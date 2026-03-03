@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Getter @Setter
 public class Product {
-    private UUID productId;
+    private UUID productId = UUID.randomUUID();
 
     @NotNull(message = "Name cannot be empty")
     private String productName;

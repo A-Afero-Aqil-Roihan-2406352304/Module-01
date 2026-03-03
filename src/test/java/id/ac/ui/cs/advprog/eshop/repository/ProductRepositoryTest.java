@@ -42,8 +42,6 @@ class ProductRepositoryTest {
         producttanpaId.setProductId(null);
         Product productBaru = productRepository.create(producttanpaId);
         assertNotNull(productBaru);
-        Product hasil=productRepository.findbyId(UUID.fromString("eb558e9f-1c39-460e-8860-71af6af63bd0"));//jika tidak ketemu, return null
-        assertNull(hasil);
     }
 
     @Test

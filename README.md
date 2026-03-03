@@ -31,3 +31,15 @@ Workflow saya sudah mengimplementasikan Continous Integration. Hal ini dikarenak
 Namun workflow saya masih belum bisa mengimplementasikan Continous Deployment. Hal ini dikarenakan saya belum dapat mendeploy projek saya ke Koyeb, Render, ataupun layanan lain yang serupa.
 Saya baru membuat dockerfile dan isinya untuk packaging (progress CD). Kedepannya saya akan menambahkan pekerjaan yang langsung deploy proyek saya ke Koyeb ketika terdapat push di main branch.
 
+# Module 03
+
+1. SRP: Satu kelas Satu tanggung Jawab. Awalnya UUID produk dan car dibuat di metode create, di ProductRepository.java dan CarRepository.java, lalu saya memindahkan pembuatan ID tersebut di model Product dan Car. Tujuannya agar repository tidak perlu bertanggung jawab dengan pembuatan UUID.
+    OCP : Kode saya sudah menerapkan prinsip Open-Closed Principle di class Car, dimana contohnya: jika ada class Car baru seperti RaceCar Class, saya tinggal menjadikannya subclass dari class Car.
+    LSP : Liskov substitution Principle menyatakan bahwa subclass harus dapat menggantikan superclassnya tanpa merubah fungsionalitas kode. Pada awalnya di kode saya, CarController merupakan subclass dari ProductController, padahal CarController tidak dapat menggantikan ProductController. Perbaikan saya adalah menjadikan CarController sebagai classnya sendiri, bukan subclass dari ProductController.
+    ISP : Kode saya sudah menerapkan prinsip Interface Segregation Principle, di mana interface CarService.Java dan ProductService.java sudah merupakan interface terkecil (hanya berisi abstract method yang memang dibutuhkan untuk keperluan Create Read Update Delete).
+    DIP : Dependency Inversion Principle menyatakan modul tingkat tinggi tidak boleh bergantung ke modul tingkat rendah, keduanya harus bergantung abstraksi. Saya memperbaiki bagian CarController.java di mana awalnya kode tersebut mengandalkan CarServiceimpl (sebuah Concrete Class), dan lalu saya mengubahnya sehingga CarController.java mengandalkan  CarService (sebuah interface)
+
+2. Keuntungan menerapkan SOLID di projek saya:
+    Jika terdapat bug, lebih mudah untuk menemukan masalahnya di kode saya karena prinsip SRP. Contoh jika ada masalah dengan id, maka saya tahu harus cek di model Product/Car, bukan di repository-nya.
+3. Kerugian tidak menerapkan SOLID di projek saya:
+   Jika terdapat bug, saya lebih bingung  untuk menemukan masalahnya di kode saya. Contoh jika ada masalah dengan id, maka saya harus membuka kembali repository dari Product dan Car untuk mememperbaiki bagian ID tersebut (Jika saya belum menerapkan SRP untuk bagian ini).
